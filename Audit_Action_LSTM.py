@@ -96,8 +96,8 @@ for tradetype in tradetypes:
     # Create data tables per trade type
     sql_query4 = 'SELECT * FROM RNN_' + tradetype + '_DATA'
     df_data = pd.read_sql_query(sql_query4, cnx)
-    count2 = len(df_data)
-    print(count2)
+    count4 = len(df_data)
+    print(count4)
 
     # tokenize the actions ===============================================
     print(df_data.head())
@@ -109,7 +109,7 @@ for tradetype in tradetypes:
 
     # tokenize actions through looping
 
-    for i in range(count2):
+    for i in range(count4):
         for j in range(max_length):
             if j < 2:
                 pass
@@ -149,8 +149,8 @@ for tradetype in tradetypes:
     # Load training data from database
     sql_query5 = 'SELECT * FROM RNN_' + tradetype + '_DATA_NUM'
     df_data = pd.read_sql_query(sql_query5, cnx)
-    count2 = len(df_data)
-    print(count2)
+    count5 = len(df_data)
+    print(count5)
     print('Loading training data...')
     del df_data['TID']
     X_train_orig = df_data.as_matrix()
@@ -161,8 +161,8 @@ for tradetype in tradetypes:
     sql_query6 = 'SELECT * FROM RNN_' + tradetype + '_TEST_NUM'
     df_test = pd.read_sql_query(sql_query6, cnx)
     print('Loading test data...')
-    count3 = len(df_test)
-    print(count3)
+    count6 = len(df_test)
+    print(count6)
     del df_test['TID']
     X_test_orig = df_test.as_matrix()
     y_test = X_test_orig[:, 0]
