@@ -7,3 +7,5 @@ without exception.
 My work will focus audit and cybersecurity field. 
 
 Thank you for reading the Readme. 
+
+- Douglas (Dokeun) Cho 
