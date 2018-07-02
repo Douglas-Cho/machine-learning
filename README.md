@@ -1,11 +1,12 @@
 # machine-learning
 This is an external repository of my machine learning work. 
 
-As I have to sanitize the codes not to reveal any piece of my workplace information, you may have to revise the code further make it to run 
-without exception.
+I will focus on audit, cybersecurity and financial market related application of machine learning. 
 
-My work will focus audit and cybersecurity field. 
+Just as a precaution, you may have to revise the code to make it run without errors as I sanitized the codes not to reveal any piece of my workplace specific information. Some part of the codes will be also environment specific such as loading data from MSSQL database. 
 
-Thank you for reading the Readme. 
+I hope this helps you see my idea. 
 
-- Douglas (Dokeun) Cho 
+Thank you for reading.  
+
+Douglas (Dokeun) Cho 
