@@ -10,7 +10,7 @@ I hope this helps you see my idea.
 Thank you for reading.  
 
 
-- Audit_Action_LSTM.py
+- Audit_Action_LSTM.py:
 This code tests audit trails to screen exceptional transactions. Using labled data with series of users' system activities as sequential inputs, LSTM model will learn and later classify if a new transaction is an exception or not based on the transaction's workflow audit trail. 
 
 For example, a transaction may go through maker's drafting, temporary saving, multiple editing, request for approval, reviewers' approval and go live. These logs of state transition will be converted into a sequential input per transaction for LSTM's learning and classification. 
