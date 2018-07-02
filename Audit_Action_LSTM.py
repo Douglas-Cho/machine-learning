@@ -268,7 +268,7 @@ for tradetype in tradetypes:
     model.load_weights(best_filename)
     pre_cls=model.predict_classes(x_test)
     df_pred = pd.DataFrame(pre_cls.reshape((-1,)), columns=['Pred'])
-    outputdb = 'temp_out_' + tradetype
+    outputdb = 'RNN_out_' + tradetype
     df_pred.to_sql(name=outputdb, con=engine, if_exists = 'replace', index=False)
 
 cnx.close()
