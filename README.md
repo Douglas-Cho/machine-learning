@@ -23,4 +23,6 @@ This code aimed to locate exceptions by analyzing transaction's log but the same
 Clustering encoded cores from autoencoder into n-number of clusters using K-means (To do - for risk assessment clustering) 
 
 
+
+
 Douglas (Dokeun) Cho 
