@@ -11,13 +11,16 @@ Thank you for reading.
 
 
 - Audit_Action_LSTM.py:
+
 This code tests audit trails to screen exceptional transactions. Using labled data with series of users' system activities as sequential inputs, LSTM model will learn and later classify if a new transaction is an exception or not based on the transaction's workflow audit trail. 
 
 For example, a transaction may go through maker's drafting, temporary saving, multiple editing, request for approval, reviewers' approval and go live. These logs of state transition will be converted into a sequential input per transaction for LSTM's learning and classification. 
 
 This code aimed to locate exceptions by analyzing transaction's log but the same concept can be applied to user's activity logs to identify suspicious users. (To do - applying this to UNIX administrators' bash_history) 
 
+- Clustering MNIST data with deep autoencoder and K-means.ipynb:
 
+Clustering encoded cores generated from autoencoder into n-number of clusters using K-means (To do - for risk assessment clustering) 
 
 
 Douglas (Dokeun) Cho 
