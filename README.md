@@ -22,7 +22,9 @@ This code aimed to locate exceptions by analyzing transaction's log but the same
 
 Clustering encoded cores from autoencoder into n-number of clusters using K-means (To do - for risk assessment clustering) 
 
+- Reinforcement Learning eBest Trading_4actions-version 1.ipynb
 
+I revised a cart-pole DQN code (by Prof Sung Kim) to read in my KOSPI market data as the environment state value. The agent supposed to learn the way to maximize the score using DQN. This model failed to learn (at least by the time I stoped) as the reward was delayed. 
 
 
 Douglas (Dokeun) Cho 
