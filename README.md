@@ -26,5 +26,9 @@ Clustering encoded cores from autoencoder into n-number of clusters using K-mean
 
 I revised a cart-pole DQN code (by Prof Sung Kim) to read in my KOSPI market data as the environment state value. The agent supposed to learn the way to maximize the score using DQN. This model failed to learn (at least by the time I stoped) as the reward was delayed. 
 
+- character-based-lstm2.py:
+
+This code originally came from Kaggle's competition on a sentiment analysis. This is a LSTM but not the usual model because this uses letters not the words. This means that all characters will be tokenized and used as input streams. I just edited the code here and there to target one label and produce confusion matrix. This character based model may fit well for the sanction list fuzzy matching purpose. 
+
 
 Douglas (Dokeun) Cho 
