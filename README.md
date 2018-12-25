@@ -1,9 +1,7 @@
 # machine-learning
 This is an external repository of my machine learning work. I focus on audit, cybersecurity and financial market related applications of machine learning. 
 
-Just as a precaution, you may have to revise the codes to make them run without errors as I sanitized the codes not to reveal any parts of my workplace specific information. Some parts of the codes will also require specific environment to work such as loading data from MS-SQL database. 
-
-I just hope you see my idea. 
+Just as a precaution, you may have to revise the codes to make them run without errors as I sanitized the codes not to reveal any parts of my workplace specific information. Some parts of the codes will also require specific environment to work such as loading data from MS-SQL database. I just hope you see my idea in that case. 
 
 - Audit_Action_LSTM.py:
 
