@@ -115,7 +115,7 @@ if __name__ == "__main__":
     
     # get size of state and action from environment
     state_size = env.observation_space.shape[0]
-    expanded_state_size = state_size * number_of_past_state
+    expanded_state_size = state_size * number_of_states
     action_size = env.action_space.n
 
     agent = DRQNAgent(expanded_state_size, action_size)
