@@ -186,7 +186,7 @@ if __name__ == "__main__":
 
             # if the mean of scores of last 10 episode is bigger than 490
             # stop training
-            # revised due to errors on Jupiter notebook
+            # revised to exit cleanly on Jupiter notebook
             if np.mean(scores[-min(10, len(scores)):]) > 490:
                 #sys.exit()
                 env.close()
