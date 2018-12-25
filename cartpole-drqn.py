@@ -110,7 +110,7 @@ if __name__ == "__main__":
     # In case of CartPole-v1, maximum length of episode is 500
     env = gym.make('CartPole-v1')
     
-    # Number of total states to use
+    # Total number of states to use
     number_of_states = 4
     
     # get size of state and action from environment
