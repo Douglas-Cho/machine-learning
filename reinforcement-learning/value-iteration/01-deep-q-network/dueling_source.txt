@@ -1,0 +1,1 @@
+Dueling came from this source: https://github.com/flyyufelix/VizDoom-Keras-RL/blob/master/networks.py
