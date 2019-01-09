@@ -4,9 +4,10 @@ import pylab
 import random
 import numpy as np
 from collections import deque
-from keras.layers import Dense, LSTM
+from keras.layers import Dense, LSTM, Input, Lambda, Add
 from keras.optimizers import Adam
-from keras.models import Sequential
+from keras.models import Sequential, Model
+from keras import backend as K
 
 EPISODES = 500
 
@@ -14,7 +15,7 @@ EPISODES = 500
 # DRQN Agent for the Cartpole
 # it uses Neural Network to approximate q function
 # and replay memory & target q network
-class DDRQNAgent:
+class DDDRQNAgent:
     def __init__(self, state_size, action_size):
         # if you want to see Cartpole learning, then change to True
         self.render = False
@@ -45,17 +46,31 @@ class DDRQNAgent:
         self.update_target_model()
 
         if self.load_model:
-            self.model.load_weights("./save_model/cartpole_ddrqn_per.h5")
+            self.model.load_weights("./save_model/cartpole_dddrqn_per.h5")
 
     # approximate Q function using Neural Network
     # state is input and Q Value of each action is output of network
     def build_model(self):
-        model = Sequential()
-        model.add(LSTM(16, input_shape=(self.state_size, 2), kernel_initializer='orthogonal', recurrent_initializer='zeros'))
-        model.add(Dense(self.action_size))
-        model.compile(loss='mse', optimizer=Adam(lr=self.learning_rate))
-        return model
+        state_input = Input(shape=(self.state_size, 2))
 
+        # state value tower - V
+        state_value = LSTM(16, kernel_initializer='orthogonal', recurrent_initializer='zeros')(state_input)
+        state_value = Dense(1, init='uniform')(state_value)
+        state_value = Lambda(lambda s: K.expand_dims(s[:, 0], axis=-1), output_shape=(self.action_size,))(state_value)
+
+        # action advantage tower - A
+        action_advantage = LSTM(16, kernel_initializer='orthogonal', recurrent_initializer='zeros')(state_input)
+        action_advantage = Dense(self.action_size)(action_advantage)
+        action_advantage = Lambda(lambda a: a[:, :] - K.max(a[:, :], keepdims=True), output_shape=(self.action_size,))(action_advantage)
+
+        # merge to state-action value function Q
+        state_action_value = Add()([state_value, action_advantage])
+
+        model = Model(input=state_input, output=state_action_value)
+        adam = Adam(lr=self.learning_rate)
+        model.compile(loss='mse', optimizer=adam)
+        return model
+    
     # after some time interval update the target model to be same with model
     def update_target_model(self):
         self.target_model.set_weights(self.model.get_weights())
@@ -73,7 +88,7 @@ class DDRQNAgent:
         if self.epsilon == 1:
             done = True
 
-        # TD-error 를 구해서 같이 메모리에 저장
+        # get TD-error and save in memory 
         target = self.model.predict(state)
         old_val = target[0][action]
         target_val = self.target_model.predict(next_state)
@@ -216,8 +231,8 @@ class SumTree:
         dataIdx = idx - self.capacity + 1
 
         return (idx, self.tree[idx], self.data[dataIdx])
-    
-    
+
+
 if __name__ == "__main__":
     # In case of CartPole-v1, maximum length of episode is 500
     env = gym.make('CartPole-v1')
@@ -230,10 +245,10 @@ if __name__ == "__main__":
     expanded_state_size = state_size * number_of_states
     action_size = env.action_space.n
 
-    agent = DDRQNAgent(expanded_state_size, action_size)
+    agent = DDDRQNAgent(expanded_state_size, action_size)
 
     scores, episodes = [], []
-    
+
     step = 0
     for e in range(EPISODES):
         done = False
@@ -251,7 +266,7 @@ if __name__ == "__main__":
         for i in range(expanded_state_size):
             for j in range(2):
                 reshaped_state[0, i, j] = expanded_state[i]
-        
+
         while not done:
             if agent.render:
                 env.render()
@@ -296,7 +311,7 @@ if __name__ == "__main__":
                 scores.append(score)
                 episodes.append(e)
                 pylab.plot(episodes, scores, 'b')
-                pylab.savefig("./save_graph/cartpole_ddrqn_per.png")
+                pylab.savefig("./save_graph/cartpole_dddrqn_per.png")
                 print("episode:", e, "  score:", score, "  memory length:",
                       step if step <= agent.memory_size else agent.memory_size, "  epsilon:", agent.epsilon)
 
@@ -310,4 +325,4 @@ if __name__ == "__main__":
 
         # save the model
         if e % 50 == 0:
-            agent.model.save_weights("./save_model/cartpole_ddrqn_per.h5")
+            agent.model.save_weights("./save_model/cartpole_dddrqn_per.h5")
