@@ -23,9 +23,9 @@ I revised a cart-pole Deep Q-Network code (by Prof Sung Kim) to read in my KOSPI
 
 This code originally came from Kaggle's Toxic Comment Classification Challenge. This embedds letters not the words. This means all characters will be tokenized and used as input streams. I just edited the code here and there to target one label and produce confusion matrix. This character based model may fit well for the sanction list fuzzy matching purpose as well. 
 
-- cartpole-drqn.py:
+- reinforcement-learning:
 
-I revised the cartpole DQN example from the rlcode github to create a DRQN example. I had to expand the state values to include previous three states and rearranged the inputs to be more meaningful sequential stream for LSTM.  
+I revised the cartpole DQN example from the rlcode github to create a DRQN example. I also expanded it with doubling, dueling, prioritized experience replay and LSTM burn-in. 
 
 
 Douglas (Dokeun) Cho 
