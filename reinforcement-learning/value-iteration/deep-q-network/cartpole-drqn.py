@@ -11,7 +11,7 @@ from keras.models import Sequential
 EPISODES = 500
 
 
-# DRQN Agent for the Cartpole modified DQN example from https://github.com/rlcode
+# DRQN Agent for the Cartpole
 # it uses Neural Network to approximate q function
 # and replay memory & target q network
 class DRQNAgent:
@@ -32,6 +32,7 @@ class DRQNAgent:
         self.epsilon_min = 0.01
         self.batch_size = 64
         self.train_start = 1000
+        
         # create replay memory using deque
         self.memory = deque(maxlen=2000)
 
@@ -49,7 +50,7 @@ class DRQNAgent:
     # state is input and Q Value of each action is output of network
     def build_model(self):
         model = Sequential()
-        model.add(LSTM(32, input_shape=(self.state_size, 2)))
+        model.add(LSTM(32, input_shape=(self.state_size, 2), kernel_initializer='orthogonal', recurrent_initializer='zeros'))
         model.add(Dense(self.action_size))
         model.compile(loss='mse', optimizer=Adam(lr=self.learning_rate))
         return model
@@ -111,7 +112,7 @@ if __name__ == "__main__":
     env = gym.make('CartPole-v1')
     
     # Total number of states to use
-    number_of_states = 4
+    number_of_states = 8
     
     # get size of state and action from environment
     state_size = env.observation_space.shape[0]
