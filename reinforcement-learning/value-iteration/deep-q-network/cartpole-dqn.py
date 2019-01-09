@@ -10,7 +10,6 @@ from keras.models import Sequential
 
 EPISODES = 500
 
-
 # DQN Agent for the Cartpole
 # it uses Neural Network to approximate q function
 # and replay memory & target q network
