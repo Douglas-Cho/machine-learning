@@ -88,7 +88,7 @@ class DDDRQNAgent:
         if self.epsilon == 1:
             done = True
 
-        # TD-error 를 구해서 같이 메모리에 저장
+        # get TD-error and save in memory 
         target = self.model.predict(state)
         old_val = target[0][action]
         target_val = self.target_model.predict(next_state)
