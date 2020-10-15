@@ -17,7 +17,7 @@ This code clusters the encoded cores from autoencoder into n-number of clusters 
 
 - Reinforcement Learning eBest Trading_4actions-version 1.ipynb
 
-I revised a cart-pole Deep Q-Network code (by Prof Sung Kim) to read in my KOSPI market data as the environment state values. The agent supposed to learn the way to maximize the score using DQN. This model failed to learn (at least by the time I stoped) as the reward was delayed. 
+I revised a cart-pole Deep Q-Network code (by Prof Sung Kim) to read in my KOSPI market data as the environment state values. The agent was supposed to learn the way to maximize the score using DQN. This model failed to learn (at least by the time I stoped) as the reward was delayed. 
 
 - character-based-lstm2.py:
 
